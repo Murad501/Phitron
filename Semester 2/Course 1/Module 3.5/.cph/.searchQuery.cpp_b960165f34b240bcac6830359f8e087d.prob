@@ -1,0 +1,1 @@
+{"name":"Local: searchQuery","url":"f:\\Phitron\\Semester 2\\Course 1\\Module 3.5\\searchQuery.cpp","tests":[{"id":1718246443909,"input":"5\n6 3 2 1 8\n4\n1\n5\n2\n9","output":"YES\nNO\nYES\nNO"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\Phitron\\Semester 2\\Course 1\\Module 3.5\\searchQuery.cpp","group":"local","local":true}
