@@ -12,6 +12,8 @@ int main()
         s.insert(x);
     }
 
+    
+
     for(auto it=s.begin(); it!=s.end(); it++) {
         cout << *it << " ";
     }
