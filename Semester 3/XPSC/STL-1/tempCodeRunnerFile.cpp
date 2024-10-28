@@ -1,5 +1,5 @@
-    // int sz = v.size();
-    // for (int i = 0; i < sz; i++)
-    // {
-    //     cout << v[i] << endl;
-    // }
+    for (auto it : mp)
+    {
+        int key = it.first, value = it.second;
+        cout << key << " -> " << value << '\n';
+    }
