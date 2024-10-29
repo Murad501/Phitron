@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,34 +8,33 @@ int main()
     cin.tie(nullptr);
     int n;
     cin >> n;
-
-    long long int preSum[n];
-    preSum[0] = 0;
+    vector<int> arr(n);
+    long long int sum = 0;
+    int oddCount = 0;
+    int smallOdd = INT_MAX;
     for (int i = 0; i < n; i++)
     {
-        long long int x;
+        int x;
         cin >> x;
-        if (i == 0)
+        arr.push_back(x);
+        sum += x;
+        if (x % 2 == 1)
         {
-            preSum[i] = x;
-        }
-        else
-        {
-            preSum[i] = preSum[i - 1] + x;
+            oddCount++;
+            smallOdd = min(smallOdd, x);
         }
     }
 
-    long long int ans = 0;
-    for (int i = n - 1; i >= 0; i--)
+
+    if (oddCount % 2 == 0)
     {
-        if (preSum[i] % 2 == 0)
-        {
-            ans = preSum[i];
-            break;
-        }
+        cout << sum << '\n';
     }
 
-    cout << ans << "\n";
+    else 
+    {
+        cout << sum - smallOdd << '\n';
+    }
 
     return 0;
 }
