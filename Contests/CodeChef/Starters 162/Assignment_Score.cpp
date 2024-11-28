@@ -16,37 +16,29 @@ int main()
     {
         int n;
         cin >> n;
-        int zero = 0;
+        int total = 0;
         for (int i = 0; i < n; i++)
         {
             int x;
             cin >> x;
-            if (x == 0)
-            {
-                zero++;
-            }
+            total += x;
         }
 
-        if (n % 2 == 0)
+        int totalNeed = (n + 1) * 50;
+        int diff = totalNeed - total;
+        if (diff > 100)
         {
-            if (zero > n / 2)
-            {
-                cout << 1 << nl;
-            }
-            else
-            {
-                cout << 0 << nl;
-            }
+            cout << -1 << nl;
         }
         else
         {
-            if (zero > ((n / 2) + 1))
+            if (diff < 0)
             {
-                cout << 1 << nl;
+                cout << 0 << nl;
             }
             else
             {
-                cout << 0 << nl;
+                cout << diff << nl;
             }
         }
     }
