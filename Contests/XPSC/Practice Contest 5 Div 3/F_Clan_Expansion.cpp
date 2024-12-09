@@ -29,37 +29,42 @@ int main()
         {
             int first = *value.begin();
             int last = *value.rbegin();
-            int prev = 0;
+            int prev = -1;
             int maxDif = 0;
             for (int val : value)
             {
-                if (val == first && val == last)
+                if (prev == -1)
                 {
-                    maxDif = max(val - 0, n - 1 - val);
+                    if (first == last)
+                    {
+                        maxDif = max(val, n - 1 - val);
+                    }
+                    else
+                    {
+                        // cout << val << nl;
+                        maxDif = val;
+                        prev = val;
+                    }
                 }
                 else
                 {
-                    if (val == first)
+                    int withPrev = (val - 1 - prev) / 2;
+                    if ((val - 1 - prev) % 2 != 0)
                     {
-                        maxDif = val - first;
-                        prev = val;
+                        withPrev++;
                     }
+
                     if (val == last)
                     {
-
-                        maxDif = max(maxDif, max(n - val - 1, val - prev));
+                        maxDif = max(maxDif, max(withPrev, n - 1 - val));
+                    }
+                    else
+                    {
+                        maxDif = max(maxDif, withPrev);
+                        prev = val;
                     }
                 }
-
-                if (val != first && val != last)
-                {
-                    int prevDif = val - prev - 1;
-                    maxDif = max(maxDif, prevDif);
-                    prev = val;
-                }
-                // cout<<val<<" "<<nl;
             }
-            cout << key << " " << maxDif << nl;
             dif[key] = maxDif;
         }
 
@@ -74,8 +79,7 @@ int main()
                 ansV = value;
             }
         }
-        cout << nl;
-        // cout << ansV << " " << ansK << nl;
+        cout << ansK << " " << ansV << nl;
     }
     return 0;
 }
