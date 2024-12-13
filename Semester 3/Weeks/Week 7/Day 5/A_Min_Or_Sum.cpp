@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define nl '\n'
+#define ll long long int
+
+#define MuRAD_BOOST()                 \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);
+
+int main()
+{
+    MuRAD_BOOST();
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<int> v;
+
+        for (int i = 0; i < n; i++)
+        {
+            int x;
+            cin >> x;
+            v.push_back(x);
+        }
+
+        map<int, int> mp;
+        for (int i = 0; i < n; i++)
+        {
+            int x = v[i];
+            int maxBit = __lg(x);
+            for (int j = 0; j <= maxBit; j++)
+            {
+                if ((x >> j) & 1 == 1)
+                {
+                    mp[j]++;
+                }
+            }
+        }
+
+        int ans = 0;
+        for (auto [key, value] : mp)
+        {
+            ans += pow(2, key);
+        }
+        cout << ans << nl;
+    }
+    return 0;
+}
