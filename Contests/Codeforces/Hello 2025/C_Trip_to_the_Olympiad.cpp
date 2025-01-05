@@ -18,23 +18,31 @@ void solve()
 {
     int l, r;
     cin >> l >> r;
-    int maxBit_l = __lg(l);
-    int maxBit_r = __lg(r);
-    int maxBit = max(maxBit_l, maxBit_r);
-    int diff = maxBit_r - maxBit_l;
-    cout<<diff<<nl;
-    if (diff > 1)
+   
+
+    int a = 0, b = 0, c = 0;
+    for (int i = 29; i >= 0; i--)
     {
-        cout << (1 << maxBit) << " " << (1 << maxBit) - 1 << " " << (1 << maxBit - 1) - 1 << nl;
+        if ((l ^ r) >> i & 1)
+        {
+            b |= 1 << i;
+            a |= (1 << i) - 1;
+            break;
+        }
+        else
+        {
+            a |= l & (1 << i);
+            b |= l & (1 << i);
+        }
     }
-    // else if (diff > 0)
-    // {
-    //     cout << (1 << maxBit) << " " << (1 << maxBit) - 1 << " " << (1 << maxBit - 1) - 1 << nl;
-    // }
-    // else
-    // {
-    //     cout << (1 << maxBit) << " " << (1 << maxBit) - 1 << " " << (1 << maxBit - 1) - 1 << nl;
-    // }
+
+    c = l;
+    while (c == a || c == b)
+    {
+        c++;
+    }
+
+    cout << a << " " << b << " " << c << "\n";
 }
 
 int main()
