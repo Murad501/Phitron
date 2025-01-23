@@ -16,7 +16,33 @@ using namespace std;
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    vector<int> v;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        v.push_back(x);
+    }
+
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (i == 0)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                ans = max(ans, v[j] - v[i]);
+            }
+        }
+        else
+        {
+            ans = max(ans, v[n - 1] - v[i]);
+            ans = max(ans, v[i - 1] - v[i]);
+        }
+    }
+    cout << ans << nl;
 }
 
 int main()
