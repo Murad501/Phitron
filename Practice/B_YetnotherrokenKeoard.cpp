@@ -3,71 +3,51 @@ using namespace std;
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int t;
     cin >> t;
-    vector<string> words;
-    for (int i = 0; i < t; i++)
+    while (t--)
     {
-        string word;
-        cin >> word;
-        words.push_back(word);
-    }
-
-    for (int i = 0; i < t; i++)
-    {
-        stack<pair<int, char>> capitals;
-        stack<pair<int, char>> smalls;
-
-        string word = words[i];
-        int sz = word.size();
-        for (int j = 0; j < sz; j++)
+        string ss;
+        cin >> ss;
+        string s;
+        vector<int> ca, sm;
+        for (int i = 0; i < ss.size(); i++)
         {
-            if (word[j] == 'B')
+            if (ss[i] != 'B' && ss[i] != 'b')
             {
-                if (!capitals.empty())
+                s.push_back(ss[i]);
+                if (ss[i] >= 'A' && ss[i] <= 'Z')
                 {
-
-                    capitals.pop();
+                    ca.push_back(i);
+                }
+                if (ss[i] >= 'a' && ss[i] <= 'z')
+                {
+                    sm.push_back(i);
                 }
             }
-            else if (word[j] == 'b')
+            if (ss[i] == 'B')
             {
-                if (!smalls.empty())
+                if (!ca.empty())
                 {
-
-                    smalls.pop();
+                    s.erase(ca.back() + 1);
+                    ca.pop_back();
                 }
             }
-            else if (word[j] >= 'A' && word[j] <= 'Z')
+            if (ss[i] == 'b')
             {
-                capitals.push({j, word[j]});
+                if (!sm.empty())
+                {
+                    char c = sm.back() + 1;
+                    cout<<c<<endl;
+                    // s.erase(sm.back() + 1);
+                    // sm.pop_back();
+                }
             }
-            else
-            {
-                smalls.push({j, word[j]});
-            }
         }
-
-        map<int, char> mp;
-        while (!capitals.empty())
-        {
-            pair<int, char> cap = capitals.top();
-            mp[cap.first] = cap.second;
-            capitals.pop();
-        }
-        while (!smalls.empty())
-        {
-            pair<int, char> sml = smalls.top();
-            mp[sml.first] = sml.second;
-            smalls.pop();
-        }
-
-        for (auto [key, value] : mp)
-        {
-            cout << value;
-        }
-        cout << '\n';
+        cout << s << endl;
     }
-
     return 0;
 }
