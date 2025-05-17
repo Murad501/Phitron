@@ -1,64 +1,88 @@
+/// In the name of ALLAH
 #include <bits/stdc++.h>
 using namespace std;
+
+typedef long long ll;
+typedef double dl;
+
+#define endl "\n"
+#define mem(a, b) memset(a, b, sizeof(a))
+#define optimize()              \
+  ios_base::sync_with_stdio(0); \
+  cin.tie(0);                   \
+  cout.tie(0);
+#define fraction()              \
+  cout.unsetf(ios::floatfield); \
+  cout.precision(10);           \
+  cout.setf(ios::fixed, ios::floatfield);
+
 int main()
 {
+  optimize();
   int t;
   cin >> t;
-
   while (t--)
   {
     int n;
     cin >> n;
-    vector<int> vc(n);
+    vector<int> v(n);
     for (int i = 0; i < n; i++)
     {
-      cin >> vc[i];
+      cin >> v[i];
     }
-    int m;
-    cin >> m;
-    while (m--)
+    int q;
+    cin >> q;
+
+    while (q--)
     {
-      string str;
-      cin >> str;
-      if (n != str.size())
+      string s;
+      cin >> s;
+      bool flag = true;
+      if (s.size() != n)
       {
-        cout << "NO\n";
-        continue;
+        flag = false;
       }
       else
       {
-        map<char, set<int>> mp;
-        map<int, set<char>> mp2;
+
+         map<char, int> mp1;
+        map<int, char> mp2;
         for (int i = 0; i < n; i++)
         {
-          mp[str[i]].insert(vc[i]);
-        }
-        for (int i = 0; i < n; i++)
-        {
-          mp[vc[i]].insert(str[i]);
-        }
-        bool flag = true;
-        for (auto [x, y] : mp)
-        {
-          if (y.size() != 1)
+          if (mp1.find(s[i]) == mp1.end() && mp2.find(v[i]) == mp2.end())
+          {
+            mp1[s[i]] = v[i];
+            mp2[v[i]] = s[i];
+          }
+          if (mp1[s[i]] != v[i])
           {
             flag = false;
             break;
           }
         }
-        for (auto [x, y] : mp2)
-        {
-          if (y.size() != 1)
-          {
-            flag = false;
-            break;
-          }
-        }
-        if (flag)
-          cout << "YES\n";
-        else
-          cout << "NO\n";
+        // for (int i = 0; i < n; i++)
+        // {
+        //   char ch = s[i];
+        //   int num = v[i];
+
+        //   if (mp1.count(ch) && mp1[ch] != num)
+        //   {
+        //     flag = false;
+        //     break;
+        //   }
+        //   if (mp2.count(num) && mp2[num] != ch)
+        //   {
+        //     flag = false;
+        //     break;
+        //   }
+        //   mp1[ch] = num;
+        //   mp2[num] = ch;
+        // }
       }
+      if (flag)
+        cout << "YES" << endl;
+      else
+        cout << "NO" << endl;
     }
   }
   return 0;

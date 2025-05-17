@@ -55,32 +55,30 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+int main() {
     int t;
     cin >> t;
-    while (t--)
-    {
+    string vowels = "aeiou";
+
+    while (t--) {
         int n;
         cin >> n;
-        string s = "aeiou";
-        int i = 0;
-        while (n--)
-        {
-            cout << s[i];
-            if (n > 0 && i == s.size() - 1)
+        string result = "";
+        map<char, int>mp;
+
+        for (int i = 0; i < n; ++i) {
+             mp[vowels[i % 5]]++;
+        }
+
+        
+        for(auto[key, value]:mp){
+            for (int i = 0; i < value; i++)
             {
-                i = 0;
-            }
-            else
-            {
-                i++;
+                 cout<<key;
             }
         }
-        cout << '\n';
+        cout<<endl;
     }
+
     return 0;
 }
