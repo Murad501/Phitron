@@ -1,4 +1,4 @@
-// 09/09/2025 21:17
+// 01/10/2025 21:35
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -19,30 +19,19 @@ using namespace std;
 void solve()
 {
     int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    bool found = false;
-    int cnt = 0;
-    int l = 0, r = n - 1;
-    while (l < r)
+    cin>>n;
+    vector<pair<int, int>>pr;
+    for (int i = 0; i < n; i++)
     {
-        if (s[l] == '1' && s[r] == '0')
-        {
-            swap(s[l], s[r]);
-            l++, r--;
-            cnt++;
-        }
-        else if (s[l] == '1')
-        {
-            r--;
-        }
-        else
-        {
-            l++;
-        }
+         int x;
+         cin>>x;
+         if(x > 1){
+            pr.push_back({x, i+1});
+         }
     }
-    cout << cnt << nl;
+
+    int ans = n;
+    
 }
 
 int32_t main()

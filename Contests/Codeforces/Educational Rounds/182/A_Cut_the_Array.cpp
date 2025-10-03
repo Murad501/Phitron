@@ -1,4 +1,4 @@
-// 13/09/2025 22:13
+// 15/09/2025 20:36
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,56 +18,50 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v;
-    map<int, int> mp;
+    int n;
+    cin >> n;
+    vector<int> v, prefix;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
         v.push_back(x);
-        mp[x]++;
-    }
-
-    bool ok = true;
-    map<int, int> ans;
-    for (auto [key, value] : mp)
-    {
-        if (value % k)
+        if (i == 0)
         {
-            ok = false;
-            break;
+            prefix.push_back(x);
         }
         else
         {
-            ans[key] = (value / k);
+            prefix.push_back(prefix[i - 1] + x);
         }
     }
-
-    if (!ok)
+    int l = -1, r = -1;
+    for (int i = 1; i < n - 1; i++)
     {
-        zero;
+        int prev = prefix[i - 1];
+        int next = prefix[n - 1] - prefix[i];
+        int curr = v[i];
+        int a = prev % 3, b = curr % 3, c = next % 3;
+        if (a == b && b == c)
+        {
+            l = i, r = i + 1;
+            break;
+        }
+        else if (a != b && b != c && a != c)
+        {
+
+            l = i, r = i + 1;
+            break;
+        }
+    }
+    if (l == -1)
+    {
+        cout << 0 << " " << 0 << nl;
     }
     else
     {
-        int sum = 0;
-        int l = 0, r = 0;
-        map<int, int> temp;
-        while (r < n)
-        {
-            temp[v[r]]++;
-            while (temp[v[r]] > ans[v[r]])
-            {
-                temp[v[l]]--;
-                l++;
-            }
 
-            sum += (r - l + 1);
-            r++;
-        }
-
-        cout << sum << nl;
+        cout << l << " " << r << nl;
     }
 }
 

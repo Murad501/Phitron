@@ -1,4 +1,4 @@
-// 09/09/2025 21:17
+// 18/09/2025 21:41
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,40 +18,33 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    bool found = false;
-    int cnt = 0;
-    int l = 0, r = n - 1;
-    while (l < r)
+    int y;
+    cin >> y;
+    y++;
+    while (true)
     {
-        if (s[l] == '1' && s[r] == '0')
+        string s = to_string(y);
+        set<char> ct;
+        for (int i = 0; i < 4; i++)
         {
-            swap(s[l], s[r]);
-            l++, r--;
-            cnt++;
+            ct.insert(s[i]);
         }
-        else if (s[l] == '1')
+        if (ct.size() == 4)
         {
-            r--;
+            break;
         }
         else
         {
-            l++;
+            y++;
         }
     }
-    cout << cnt << nl;
+    cout << y << nl;
 }
 
 int32_t main()
 {
     MuRAD_BOOST();
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    solve();
 
     return 0;
 }

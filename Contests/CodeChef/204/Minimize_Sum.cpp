@@ -1,4 +1,4 @@
-// 13/09/2025 22:13
+// 17/09/2025 23:28
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,57 +18,49 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    int n, m;
+    cin >> n >> m;
     vector<int> v;
-    map<int, int> mp;
+
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
         v.push_back(x);
-        mp[x]++;
     }
-
-    bool ok = true;
-    map<int, int> ans;
-    for (auto [key, value] : mp)
+    sort(all(v));
+    vector<int> prefix;
+    prefix.push_back(0);
+    for (int i = 0; i < n; i++)
     {
-        if (value % k)
-        {
-            ok = false;
-            break;
-        }
-        else
-        {
-            ans[key] = (value / k);
-        }
+
+        prefix.push_back(v[i] + prefix[i]);
     }
 
-    if (!ok)
+    int ans = INT_MAX;
+
+    int diff = m - v[0];
+    int sum = prefix[0];
+
+    for (int j = 1; j < n; j++)
     {
-        zero;
+        int val = v[j] + diff;
+        sum += (val % m);
     }
-    else
+    ans = min(ans, sum);
+
+    int prev = v[0], next = sum;
+    for (int i = 1; i < n; i++)
     {
-        int sum = 0;
-        int l = 0, r = 0;
-        map<int, int> temp;
-        while (r < n)
-        {
-            temp[v[r]]++;
-            while (temp[v[r]] > ans[v[r]])
-            {
-                temp[v[l]]--;
-                l++;
-            }
+         int df = v[i] - prev;
+        next-=
 
-            sum += (r - l + 1);
-            r++;
-        }
 
-        cout << sum << nl;
+
+         prev = v[i];
     }
+
+    cout << ans << nl;
 }
 
 int32_t main()

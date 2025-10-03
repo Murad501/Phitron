@@ -1,4 +1,4 @@
-// 09/09/2025 21:17
+// 17/09/2025 23:25
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,31 +18,31 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n, m;
+    cin>>n>>m;
     string s;
-    cin >> s;
-    bool found = false;
-    int cnt = 0;
-    int l = 0, r = n - 1;
-    while (l < r)
+    cin>>s;
+    int a = 0, b = 0;
+    for (int i = 0; i < m; i++)
     {
-        if (s[l] == '1' && s[r] == '0')
-        {
-            swap(s[l], s[r]);
-            l++, r--;
-            cnt++;
-        }
-        else if (s[l] == '1')
-        {
-            r--;
-        }
-        else
-        {
-            l++;
+         if(s[i] == '0'){
+            a++;
+         }else{
+            b++;
+         }
+    }
+    int avail = n - m;
+    int diff = abs(a - b);
+    if(avail < diff){
+        cno;
+    }else{
+        int rem = avail - diff;
+        if(rem % 2 == 0){
+            cyes;
+        }else{
+            cno;
         }
     }
-    cout << cnt << nl;
 }
 
 int32_t main()

@@ -1,4 +1,4 @@
-// 13/09/2025 22:13
+// 24/09/2025 20:59
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,57 +18,57 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
     vector<int> v;
+    deque<int> dq;
     map<int, int> mp;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
         v.push_back(x);
-        mp[x]++;
-    }
+        if (x > 0)
+        {
 
-    bool ok = true;
-    map<int, int> ans;
+            mp[i + 1] = x;
+        }
+    }
     for (auto [key, value] : mp)
     {
-        if (value % k)
+        dq.push_back(key);
+    }
+    sort(dq.rbegin(), dq.rend());
+    vector<int> ans(n + 1, 0);
+    int sz = dq.size();
+    for (int i = 0; i < sz; i++)
+    {
+        // cout << dq[i] << " " << mp[dq[i]] << nl;
+        int times = mp[dq[i]];
+        if (times > n)
         {
-            ok = false;
-            break;
+            // ans[1] = dq[i];
+            ans[times - n] = dq[i];
+        }
+        else
+        {   
+            ans[n - times + 1] = dq[i];
+        }
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        // cout << ans[i] << " ";
+        if (ans[i] > 1)
+        {
+            cout << ans[i] << " ";
         }
         else
         {
-            ans[key] = (value / k);
+            cout << 1 << " ";
         }
     }
 
-    if (!ok)
-    {
-        zero;
-    }
-    else
-    {
-        int sum = 0;
-        int l = 0, r = 0;
-        map<int, int> temp;
-        while (r < n)
-        {
-            temp[v[r]]++;
-            while (temp[v[r]] > ans[v[r]])
-            {
-                temp[v[l]]--;
-                l++;
-            }
-
-            sum += (r - l + 1);
-            r++;
-        }
-
-        cout << sum << nl;
-    }
+    cout << nl;
 }
 
 int32_t main()

@@ -1,4 +1,4 @@
-// 13/09/2025 22:13
+// 21/09/2025 20:35
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,57 +18,32 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v;
+    int n;
+    cin >> n;
     map<int, int> mp;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
-        v.push_back(x);
         mp[x]++;
     }
+    int ans = 0;
+    map<int, int> mp2;
 
-    bool ok = true;
-    map<int, int> ans;
+    vector<int> v;
     for (auto [key, value] : mp)
     {
-        if (value % k)
-        {
-            ok = false;
-            break;
-        }
-        else
-        {
-            ans[key] = (value / k);
-        }
+        v.push_back(value);
     }
 
-    if (!ok)
+    sort(all(v));
+    int sz = v.size();
+    for (int i = 0; i < sz; i++)
     {
-        zero;
+        int val = v[i] * (sz - i);
+        ans = max(ans, val);
     }
-    else
-    {
-        int sum = 0;
-        int l = 0, r = 0;
-        map<int, int> temp;
-        while (r < n)
-        {
-            temp[v[r]]++;
-            while (temp[v[r]] > ans[v[r]])
-            {
-                temp[v[l]]--;
-                l++;
-            }
-
-            sum += (r - l + 1);
-            r++;
-        }
-
-        cout << sum << nl;
-    }
+    cout << ans << nl;
 }
 
 int32_t main()

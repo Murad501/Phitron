@@ -1,4 +1,4 @@
-// 13/09/2025 22:13
+// 27/09/2025 18:07
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -18,66 +18,58 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
     vector<int> v;
     map<int, int> mp;
+    bool ok = true;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
         v.push_back(x);
-        mp[x]++;
-    }
-
-    bool ok = true;
-    map<int, int> ans;
-    for (auto [key, value] : mp)
-    {
-        if (value % k)
+        if (x > 0)
         {
-            ok = false;
-            break;
-        }
-        else
-        {
-            ans[key] = (value / k);
+            mp[x]++;
+            if (mp[x] > 1)
+            {
+                ok = false;
+            }
         }
     }
 
     if (!ok)
     {
-        zero;
+        cno;
     }
     else
     {
-        int sum = 0;
-        int l = 0, r = 0;
-        map<int, int> temp;
-        while (r < n)
+        int curr = 1;
+        for (int i = 0; i < n; i++)
         {
-            temp[v[r]]++;
-            while (temp[v[r]] > ans[v[r]])
+            if (v[i] == -1)
             {
-                temp[v[l]]--;
-                l++;
+                while (mp[curr] > 0)
+                {
+                    curr++;
+                }
+                v[i] = curr;
+                curr++;
             }
-
-            sum += (r - l + 1);
-            r++;
         }
-
-        cout << sum << nl;
+        cyes;
+        for (int i = 0; i < n; i++)
+        {
+            cout << v[i] << " ";
+        }
+        cout << nl;
     }
 }
 
 int32_t main()
 {
     MuRAD_BOOST();
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    solve();
 
     return 0;
 }

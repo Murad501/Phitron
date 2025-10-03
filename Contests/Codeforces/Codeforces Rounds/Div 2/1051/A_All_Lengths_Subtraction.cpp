@@ -1,4 +1,4 @@
-// 24/04/2025 19:40
+// 17/09/2025 20:36
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -21,47 +21,59 @@ void solve()
     int n;
     cin >> n;
     vector<int> v;
-    int sum = 0;
+    map<int, int> mp;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
         v.push_back(x);
+        mp[x] = i + 1;
     }
 
-    deque<int> dq;
-
-    for (int i = 0; i < n; i++)
+    int l = mp[n], r = mp[n];
+    bool ok = true;
+    int curr = n - 1;
+    while (curr >= 1)
     {
-        if (i == 0)
+        int idx = mp[curr];
+        // cout << idx << nl;
+        if (idx < l)
         {
-            dq.push_back(v[i]);
+            int diff = abs(l - idx);
+            if (diff == 1)
+            {
+                l--;
+            }
+            else
+            {
+                ok = false;
+                break;
+            }
         }
         else
         {
-            int sz = dq.size();
-            if (dq[sz - 1] != v[i])
+            int diff = abs(r - idx);
+            if (diff == 1)
             {
-                if (dq.size() == 1)
-                {
-                    dq.push_back(v[i]);
-                }
-                else
-                {
-                    if ((dq[sz - 1] < dq[sz - 2] && v[i] < dq[sz - 1]) || (dq[sz - 1] > dq[sz - 2] && v[i] > dq[sz - 1]))
-                    {
-                        dq.pop_back();
-                        dq.push_back(v[i]);
-                    }
-                    else
-                    {
-                        dq.push_back(v[i]);
-                    }
-                }
+                r++;
+            }
+            else
+            {
+                ok = false;
+                break;
             }
         }
+        curr--;
     }
-    cout << dq.size() << nl;
+
+    if (ok)
+    {
+        yes;
+    }
+    else
+    {
+        no;
+    }
 }
 
 int32_t main()
