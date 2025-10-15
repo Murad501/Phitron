@@ -1,10 +1,9 @@
-// 11/07/2025 16:06
+// 08/10/2025 20:32
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
 #define int long long
 #define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
 #define ll long long int
 #define yes cout << "YES" << '\n'
 #define no cout << "NO" << '\n'
@@ -19,41 +18,42 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v;
-    int ans = 0;
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int first = -1, last = -1;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        v.push_back(x);
+         if(s[i] == '1'){
+            if(first == -1){
+                first= i,last = i;
+            }else{
+                last = i;
+            }
+         }
     }
 
-    int val = v[k - 1];
-    for (int i = 0; i < n; i++)
-    {
-        if (v[i] == 0)
+    int cnt = 0;
+    if(first != -1){
+        for (int i = first; i <=last; i++)
         {
-            break;
+             if(s[i] == '0'){
+                cnt++;
+             }
         }
-        if (v[i] >= val)
-        {
-            ans++;
-        }
-        else
-        {
-            break;
-        }
-    }
 
-    cout << ans << nl;
+    }
+    cout<<cnt<<nl;
 }
 
 int32_t main()
 {
     MuRAD_BOOST();
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

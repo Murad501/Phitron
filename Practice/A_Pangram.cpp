@@ -1,10 +1,9 @@
-// 11/07/2025 16:06
+// 07/10/2025 20:58
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
 #define int long long
 #define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
 #define ll long long int
 #define yes cout << "YES" << '\n'
 #define no cout << "NO" << '\n'
@@ -19,35 +18,24 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v;
-    int ans = 0;
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    set<char>st;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        v.push_back(x);
+         if(s[i]> 'Z'){
+            st.insert(s[i] - 32);
+         }else{
+            st.insert(s[i]);
+         }
     }
-
-    int val = v[k - 1];
-    for (int i = 0; i < n; i++)
-    {
-        if (v[i] == 0)
-        {
-            break;
-        }
-        if (v[i] >= val)
-        {
-            ans++;
-        }
-        else
-        {
-            break;
-        }
+    if(st.size() == 26){
+        yes;
+    }else{
+        no;
     }
-
-    cout << ans << nl;
 }
 
 int32_t main()

@@ -1,10 +1,9 @@
-// 11/07/2025 16:06
+// 04/10/2025 21:33
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
 #define int long long
 #define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
 #define ll long long int
 #define yes cout << "YES" << '\n'
 #define no cout << "NO" << '\n'
@@ -19,35 +18,22 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+    int n;
+    cin>>n;
+    for (int i = 1; i <= n; i++)
     {
-        int x;
-        cin >> x;
-        v.push_back(x);
-    }
+         if(i &1){
+            cout<<"I hate ";
+         }else{
+            cout<<"I love ";
+         }
 
-    int val = v[k - 1];
-    for (int i = 0; i < n; i++)
-    {
-        if (v[i] == 0)
-        {
-            break;
-        }
-        if (v[i] >= val)
-        {
-            ans++;
-        }
-        else
-        {
-            break;
-        }
+         if(n == i){
+            cout<<"it"<<nl;
+         }else{
+            cout<<"that ";
+         }
     }
-
-    cout << ans << nl;
 }
 
 int32_t main()

@@ -1,4 +1,4 @@
-// 11/07/2025 16:06
+// 13/10/2025 10:28
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
@@ -19,41 +19,25 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> v;
-    int ans = 0;
+    int n;
+    cin>>n;
+    vector<int>v;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        v.push_back(x);
+         int x;
+         cin>>x;
+         v.push_back(x);
     }
-
-    int val = v[k - 1];
-    for (int i = 0; i < n; i++)
-    {
-        if (v[i] == 0)
-        {
-            break;
-        }
-        if (v[i] >= val)
-        {
-            ans++;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    cout << ans << nl;
+    sort(rall(v));
 }
 
 int32_t main()
 {
     MuRAD_BOOST();
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

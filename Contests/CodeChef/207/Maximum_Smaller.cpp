@@ -1,10 +1,9 @@
-// 11/07/2025 16:06
+// 08/10/2025 20:36
 #include <bits/stdc++.h>
 using namespace std;
 #define nl '\n'
 #define int long long
 #define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
 #define ll long long int
 #define yes cout << "YES" << '\n'
 #define no cout << "NO" << '\n'
@@ -19,41 +18,39 @@ using namespace std;
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
+    multimap<int, int> mp;
     vector<int> v;
-    int ans = 0;
+    set<int> used;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
+        mp.insert({x, i});
         v.push_back(x);
     }
-
-    int val = v[k - 1];
-    for (int i = 0; i < n; i++)
+    vector<int> rem;
+    int id = 1, i = 0;
+    while (id < n)
     {
-        if (v[i] == 0)
-        {
-            break;
-        }
-        if (v[i] >= val)
-        {
-            ans++;
-        }
-        else
-        {
-            break;
-        }
+        auto it = mp.find(v[id]);
     }
 
-    cout << ans << nl;
+    for(auto[key, value]:mp){
+        cout<<key<<" "<<value<<nl;
+    }
+    cout<<nl;
+    
 }
 
 int32_t main()
 {
     MuRAD_BOOST();
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }
