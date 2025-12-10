@@ -4,6 +4,7 @@ using namespace std;
 #define nl '\n'
 #define int long long
 #define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
 #define ll long long int
 #define yes cout << "YES" << '\n'
 #define no cout << "NO" << '\n'
@@ -51,65 +52,56 @@ void solve()
         }
     }
 
-    if (ods.size() == 0)
+    if (evens.size() < 2)
     {
-        cout << sum << nl;
+        zero;
     }
     else
     {
-
-        sort(ods.rbegin(), ods.rend());
-        if (ods.size() == 1)
+        if (ods.size() == 0)
         {
-            if (sum <= ods[0])
-            {
-                if(evens.size() == 2){
-                    zero;
-                }else{
-                    cout<<sum<<nl;
-                }
-            }
-            else
-            {
-                sum += (ods[0]);
-                cout << sum << nl;
-            }
+            cout << sum << nl;
         }
         else
         {
+            sort(rall(ods));
+            int sz = ods.size();
+            int ans = sum;
+            bool ok = false;
+            for (int i = 0; i < sz; i++)
+            {
+                if (ods[i] < sum)
+                {
+                    ans += ods[i];
+                    ok = true;
+                    break;
+                }
+            }
 
-            // cout<<"hello"<<nl;
-            int m = ods.size();
-            int mx = 0;
-            for (int i = 0; i < m; i++)
+            for (int i = 0; i < sz - 1; i++)
+            {
+                if (ods[i] < (sum + ods[i + 1]))
+                {
+                    sum += (ods[i] + ods[i + 1]);
+                    ok = true;
+                    break;
+                }
+            }
+            if (ok)
             {
 
-                int sm = ods[i];
-
-                if(sm < sum){
-                    mx = max(sm, mx);
-                }
-                int l = i + 1, r = m - 1, mid;
-                while (l <= r)
-                {
-                    mid = (r + l) / 2;
-                    if (sm - ods[mid] < sum)
-                    {
-                        r = mid - 1;
-                        mx = max(mx, (sm + ods[mid]));
-                    }
-                    else
-                    {
-                        l = mid + 1;
-                    }
-                }
-            
+                cout << max({ans, sum}) << nl;
             }
-            if(mx == 0 && evens.size() <=2){
-                zero;
-            }else{
-                cout << sum + mx << nl;
-
+            else
+            {
+                if (evens.size() > 2)
+                {
+                    cout << sum << nl;
+                }
+                else
+                {
+                    zero;
+                }
             }
         }
     }
